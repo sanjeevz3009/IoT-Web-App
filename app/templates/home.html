@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Plant Monitoring System</h1>
+        <div class="metrics">
+            <div class="metric" id="light">
+                <h2>Light Intensity</h2>
+                <canvas id="lightChart"></canvas>
+            </div>
+            <div class="metric" id="moisture">
+                <h2>Moisture Level</h2>
+                <canvas id="moistureChart"></canvas>
+            </div>
+            <div class="metric" id="temperature">
+                <h2>Temperature</h2>
+                <canvas id="temperatureChart"></canvas>
+            </div>
+            <div class="metric" id="humidity">
+                <h2>Humidity</h2>
+                <canvas id="humidityChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

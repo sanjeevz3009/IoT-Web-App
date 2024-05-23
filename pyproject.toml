@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "iot-web-app"
+version = "0.1.0"
+description = ""
+authors = ["sanjeevz3009 <sanjeevz1717@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10"
+flake8 = "^7.0.0"
+pylint = "^3.2.2"
+black = "^24.4.2"
+bandit = "^1.7.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
