@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Average Bin Levels by Day of the Week</h1>
+    <canvas id="binLevelChart" style="width: 100%;"></canvas>
+
+    <script>
+        // Parse JSON data passed from Flask
+        var chartData = {{ chart_data | safe }};
+
+        // Create Chart.js chart
+        var ctx = document.getElementById('binLevelChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Average Bin Level',
+                    data: chartData.values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Bin Level (out of 100)'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100 // Set maximum value of y-axis to 100
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Day of the Week'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}
