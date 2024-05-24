@@ -1,38 +1,76 @@
 body {
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
     background-color: #f4f4f4;
-    color: #333;
+}
+
+nav {
+    width: 100%;
+    background-color: #333;
+}
+
+nav ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-h1 {
     text-align: center;
-}
-
-.metrics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.metric {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background: white;
     padding: 20px;
-    margin: 10px;
-    width: 45%;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 800px;
 }
 
-.metric h2 {
-    margin-bottom: 20px;
+.level {
+    font-size: 48px;
+    color: green;
+}
+
+.fill-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.fill {
+    height: 30px;
+    background-color: #76c7c0;
+    transition: width 0.5s;
+}
+
+.status {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.sensor-data {
+    font-size: 20px;
+    margin-top: 20px;
 }

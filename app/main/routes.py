@@ -1,56 +1,29 @@
-# from flask import render_template, request, Blueprint
+from flask import render_template, request, Blueprint, jsonify, json
 from flask import Blueprint
 
 main = Blueprint("main", __name__)
 
-# #  Route decorators
-# @main.route("/")
-# @main.route("/home")
-# def home():
-#     return render_template("home.html")
+# Global variables to store the received data
+bin_data = {'distance': None, 'temperature': None, 'humidity': None}
 
-from flask import Flask, request, jsonify, render_template
-import json
+@main.route('/data', methods=['POST'])
+def receive_data():
+    data = request.json
+    if not data:
+        return jsonify({'error': 'No data received'}), 400
+    distance = data.get('distance')
+    temperature = data.get('temperature')
+    humidity = data.get('humidity')
+    print(f"Received data - Distance: {distance} cm, Temperature: {temperature} C, Humidity: {humidity}%")
+    return jsonify({'message': 'Data received successfully'}), 200
 
-# app = Flask(__name__)
-
-# Function to read sensor data from a JSON file (simulating the database)
-# def get_sensor_data():
-#     with open('app/main/data/sensor_data.json', 'r') as file:
-#         data = json.load(file)
-#     return data
-
-# @main.route('/')
-# def index():
-#     return render_template('home.html')
-
-# @main.route('/data')
-# def data():
-#     sensor_data = get_sensor_data()
-#     return jsonify(sensor_data)
-
-def get_sensor_data():
-    with open('app/main/data/sensor_data.json', 'r') as file:
-        data = json.load(file)
-    return data
-
-def save_sensor_data(data):
-    with open('app/main/data/sensor_data.json', 'w') as file:
-        json.dump(data, file)
-
-@main.route('/')
-def index():
-    return render_template('home.html')
-
-@main.route('/data')
-def data():
-    sensor_data = get_sensor_data()
-    return jsonify(sensor_data)
-
-@main.route('/ldr_data', methods=['POST'])
-def ldr_data():
-    ldr_value = request.form['value']
-    sensor_data = get_sensor_data()
-    sensor_data['light'] = ldr_value  # Update the light data
-    save_sensor_data(sensor_data)
-    return "Data received"
+#  Route decorators
+@main.route("/")
+@main.route("/home")
+def home():
+    # global bin_level
+    # return render_template("home.html", bin_data=bin_data)
+    # Load test data from JSON file
+    with open('app/main/data/sensor_data.json', 'r') as f:
+        test_data = json.load(f)
+    return render_template("home.html", bin_data=test_data)
