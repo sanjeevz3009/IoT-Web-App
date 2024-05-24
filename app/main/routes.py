@@ -29,6 +29,14 @@ def home():
         test_data = json.load(f)
     return render_template("home.html", bin_data=test_data)
 
+@main.route("/about")
+def about():
+    return render_template("about.html")
+
+@main.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 @main.route('/chart')
 def chart():
     # Read the CSV file
